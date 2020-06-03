@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>edit opening hours</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+<div class="container">
+    <div class="row">
+        <h4><strong>Edit Opening Hours</strong> </h4>
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <!-- Start form -->
+            <form action="/editopeninghours" th:action="@{/editopeninghours}" th:object="${venue}" method="post">
+                <div>
+                    <input type="hidden" th:field="${venue.uid}"/>
+                </div>
+
+                <div class="form-group name1 col-md-2">
+                    <label>Monday</label>
+                    <br>
+                    <small>Open</small>
+                    <input type="text" class="form-control" placeholder="example: 14:00" th:field="${venue.monday}">
+
+                    <small>Close</small>
+                    <input type="text" class="form-control" placeholder="example: 14:00" th:field="${venue.mondayClose}">
+                </div>
+                <div class="form-group name1 col-md-2">
+                    <label>Thuesday</label>
+                    <br>
+                    <small>Open</small>
+                    <input type="text" class="form-control" placeholder="example: 14:00" th:field="${venue.thuesday}">
+                    <small>Close</small>
+                    <input type="text" class="form-control" placeholder="example: 14:00" th:field="${venue.thuesdayClose}">
+
+                </div>
+                <div class="form-group name1 col-md-2">
+                    <label>Wednesday</label>
+                    <br>
+                    <small>Open</small>
+                    <input type="text" class="form-control"  placeholder="example: 14:00" th:field="${venue.wednesday}">
+                    <small>Close</small>
+                    <input type="text" class="form-control"  placeholder="example: 14:00" th:field="${venue.wednesdayClose}">
+
+                </div>
+
+                <div class="form-group name1 col-md-2">
+                    <label>Thursday</label>
+                    <br>
+                    <small>Open</small>
+                    <input type="text" class="form-control" placeholder="example: 14:00" th:field="${venue.thursday}">
+                    <small>Close</small>
+                    <input type="text" class="form-control" placeholder="example: 14:00" th:field="${venue.thursdayClose}">
+
+                </div>
+
+                <div class="form-group name1 col-md-2">
+                    <label>Friday</label>
+                    <br>
+                    <small>Open</small>
+                    <input type="text" class="form-control" placeholder="example: 14:00" th:field="${venue.friday}">
+                    <small>Close</small>
+                    <input type="text" class="form-control" placeholder="example: 14:00" th:field="${venue.fridayClose}">
+
+                </div>
+                <div class="form-group name1 col-md-2">
+                    <label>Saturday</label>
+                    <br>
+                    <small>Open</small>
+                    <input type="text" class="form-control" placeholder="example: 14:00" th:field="${venue.saturday}">
+                    <small>Close</small>
+                    <input type="text" class="form-control" placeholder="example: 14:00" th:field="${venue.saturdayClose}">
+
+                </div>
+
+                <div class="form-group name1 col-md-2">
+                    <label>Sunday</label>
+                    <br>
+                    <small>Open</small>
+                    <input type="text" class="form-control" placeholder="example: 14:00" th:field="${venue.sunday}">
+                    <small>Close</small>
+                    <input type="text" class="form-control" placeholder="example: 14:00" th:field="${venue.sundayClose}">
+                </div>
+
+                <div class="container">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+
+            </form>
+            <!-- End form -->
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

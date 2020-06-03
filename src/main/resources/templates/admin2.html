@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+
+</head>
+<body>
+
+<div class="container">
+    <div class="row">
+        <h4><strong>Create Venue Form -- Night out </strong> </h4>
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <!-- Start form -->
+            <form action="/admin" th:action="@{/admin}" th:object="${venue}" method="post">
+                <div class="form-group">
+                    <label>Name</label>
+                    <input type="text" class="form-control" id="name" aria-describedby="emailHelp" placeholder="Enter venue name" name="name"  th:value="${name}">
+                </div>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" class="form-control" name="email" id="email" placeholder="Enter venue email" th:value="${email}" required>
+                </div>
+                <div class="form-group">
+                    <label>Street Name</label>
+                    <input type="text" class="form-control" name="streetName" id="streetName" placeholder="Enter venue street name" th:value="${streetName}" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Street Number</label>
+                    <input type="text" class="form-control" name="streetNumber" id="streetNumber" placeholder="Enter venue street number" th:value="${streetNumber}" required>
+                </div>
+
+                <div class="form-group">
+                    <label>City</label>
+                    <input type="text" class="form-control" name="city" id="city" placeholder="Enter venue city" th:value="${city}" required>
+                </div>
+                <div class="form-group">
+                    <label>Postal Code</label>
+                    <input type="text" class="form-control" name="postalCode" id="postalCode" placeholder="Enter venue Postal Code" th:value="${postalCode}" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Phone Number</label>
+                    <input type="text" class="form-control" name="phoneNumber" id="phoneNumber" placeholder="Enter venue Phone number" th:value="${phoneNumber}" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" class="form-control" name="password" id="password" placeholder="Enter password" th:value="${password}" required>
+                </div>
+
+                <div class="container">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+
+            </form>
+            <!-- End form -->
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
