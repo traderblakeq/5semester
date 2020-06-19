@@ -31,5 +31,7 @@ public interface IFirebase {
 
     Pictures savePicsToFireStore(String uid, Pictures pictures);
 
+    String deletePicsFromDb(String uid);
+
     DocumentSnapshot fetchPicturesFromFireBase(String uid) throws InterruptedException, ExecutionException;
 }

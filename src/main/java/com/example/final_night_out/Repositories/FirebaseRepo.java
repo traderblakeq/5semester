@@ -166,10 +166,27 @@ public class FirebaseRepo implements IFirebase{
     @Override
     public Pictures savePicsToFireStore(String uid, Pictures pictures) {
 
-        ApiFuture<WriteResult> future = FirestoreClient.getFirestore()
-                .collection("pictures")
+        try {
+            ApiFuture<WriteResult> future = FirestoreClient.getFirestore()
+                    .collection("pictures")
+                    .document(uid)
+                    .set(pictures);
+
+        } catch (Exception e){
+
+            log.info(String.valueOf(e));
+        }
+
+        return null;
+    }
+
+    @Override
+    public String deletePicsFromDb(String uid) {
+        Firestore dbFireStore = FirestoreClient.getFirestore();
+
+        ApiFuture<WriteResult> writeResult = dbFireStore.collection("pictures")
                 .document(uid)
-                .set(pictures);
+                .delete();
 
         return null;
     }
@@ -179,7 +196,7 @@ public class FirebaseRepo implements IFirebase{
 
         Firestore dbFirestore = FirestoreClient.getFirestore();
 
-        DocumentReference docRef = dbFirestore.collection("features").document(uid);
+        DocumentReference docRef = dbFirestore.collection("pictures").document(uid);
 
         ApiFuture<DocumentSnapshot> future = docRef.get();
 

@@ -1,7 +1,6 @@
 package com.example.final_night_out.Config;
 
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -11,7 +10,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Configuration
 @EnableWebSecurity
-//@ComponentScan(basePackages = "com.example.final_night_out.Config")
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override

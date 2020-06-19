@@ -80,13 +80,23 @@ public class VenueService implements IVenueService {
     }
 
     @Override
+    public String deletePics(String uid) {
+        return firebaseRepo.deletePicsFromDb(uid);
+    }
+
+    @Override
     public List<Pictures> fetchPictures(String uid) throws InterruptedException, ExecutionException{
 
         DocumentSnapshot document = firebaseRepo.fetchPicturesFromFireBase(uid);
 
-        List<Pictures> listOfPics = (List<Pictures>) document.toObject(Pictures.class);
+        List<Pictures> picturesList = new ArrayList<>();
 
-        return listOfPics;
+        if(document != null){
+            Pictures listOfPics = (Pictures) document.toObject(Pictures.class);
+            picturesList.add(listOfPics);
+        }
+
+        return picturesList;
     }
 
     private String convertToBase64(MultipartFile imageFile) throws IOException {

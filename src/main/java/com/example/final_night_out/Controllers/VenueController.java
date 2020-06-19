@@ -8,16 +8,15 @@ import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
-import java.util.ArrayList;
-import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 @Log
 @Controller
+@SessionAttributes("venue")
 public class VenueController {
 
     @Autowired
@@ -28,8 +27,6 @@ public class VenueController {
     private final String REDIRECT_INDEX = "redirect:/index";
     private final String FEATURES_GET = "features";
 
-    private String uid;
-
 
     @GetMapping("index")
     public String index(@ModelAttribute("venue") Venue venue,
@@ -37,7 +34,7 @@ public class VenueController {
     {
         log.info("index action called...");
 
-        this.uid = venue.getUid();
+        System.out.println("index Email " + venue.getEmail());
 
         model.addAttribute("venueData", iVenueService.findVenueByUid(venue.getUid()));
 
@@ -46,25 +43,6 @@ public class VenueController {
         model.addAttribute("pics", iVenueService.fetchPictures(venue.getUid()));
 
         log.info("index action ended...");
-
-        return INDEX;
-    }
-
-    @GetMapping("index/{uid}")
-    public String indexUid(@PathVariable("uid") String uid,
-                           Model model) throws ExecutionException, InterruptedException{
-
-        log.info("indexUid action called...");
-
-        model.addAttribute("venueData", iVenueService.findVenueByUid(uid));
-
-        model.addAttribute("news", iVenueService.fetchnews());
-
-        model.addAttribute("pics", iVenueService.fetchPictures(uid));
-
-        log.info("indexUid action ended...");
-
-
 
         return INDEX;
     }
@@ -112,7 +90,7 @@ public class VenueController {
         log.info("featuresPost action ended...");
 
 
-        return REDIRECT_INDEX + "/" + features.getEmail();
+        return REDIRECT_INDEX;
     }
 
     @GetMapping("/editopeninghours/{uid}")
@@ -145,19 +123,33 @@ public class VenueController {
 
     @PostMapping("/uploadproductimage")
     public String uploadproductimage(@RequestParam("fileName") MultipartFile imageFile,
-                               @ModelAttribute Pictures pictures) throws Exception {
+                               @ModelAttribute Pictures pictures,
+                               @ModelAttribute("venue") Venue venue) throws Exception {
 
         log.info("uploadproductimage action called...");
 
 
         if(!imageFile.isEmpty())
         {
-            iVenueService.savePics(uid, pictures, imageFile);
+            iVenueService.savePics(venue.getUid(), pictures, imageFile);
         }
 
         log.info("uploadproductimage action ended...");
 
 
-        return REDIRECT_INDEX + "/" + uid;
+        return REDIRECT_INDEX;
+    }
+
+    @GetMapping("/deletepic")
+    public String deletePic(@ModelAttribute("venue") Venue venue){
+
+        log.info("deletepic action started");
+
+        iVenueService.deletePics(venue.getUid());
+
+        log.info("delete pics action ended");
+
+        return REDIRECT_INDEX;
+
     }
 }

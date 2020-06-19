@@ -43,49 +43,4 @@ public class IndexService implements IindexService {
         return null;
     }
 
-    /*
-    @Override
-    public Venue setOpeningHours(String uid,
-                                 String monday,
-                                 String thuesday,
-                                 String wednesday,
-                                 String thursday,
-                                 String friday,
-                                 String saturday,
-                                 String sunday) {
-
-        Venue venue = new Venue();
-        venue.setUid(uid);
-        venue.setMonday(monday);
-        venue.setThuesday(thuesday);
-        venue.setWednesday(wednesday);
-        venue.setThursday(thursday);
-        venue.setFriday(friday);
-        venue.setSaturday(saturday);
-        venue.setSunday(sunday);
-        firebaseRepo.saveOpeningHours(venue);
-
-        return null;
-    }
-
-    @Override
-    public Venue findVenueByUid(String uid) throws InterruptedException, ExecutionException{
-        return firebaseRepo.fetchVenueByUid(uid);
-    }
-
-    @Override
-    public Venue updateOpeningHours(String uid, String monday, String thuesday, String wednesday, String thursday, String friday, String saturday, String sunday) {
-
-        Venue venue = new Venue();
-        venue.setUid(uid);
-        venue.setMonday(monday);
-        venue.setThuesday(thuesday);
-        venue.setWednesday(wednesday);
-        venue.setThursday(thursday);
-        venue.setFriday(friday);
-        venue.setSaturday(saturday);
-        venue.setSunday(sunday);
-
-        return firebaseRepo.saveOpeningHours(venue);
-    }*/
 }

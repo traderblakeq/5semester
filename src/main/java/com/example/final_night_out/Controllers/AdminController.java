@@ -46,7 +46,6 @@ public class AdminController {
 
         iAdminService.initialCreationVenue(venue);
 
-        System.out.println(features);
         iAdminService.initialCreationFeatures(features);
 
         log.info("admin_post action ended...");

@@ -6,14 +6,16 @@ import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import javax.servlet.http.HttpSession;
 import java.util.concurrent.ExecutionException;
 
 @Log
 @Controller
+@SessionAttributes("venue")
 public class LoginController {
 
     private final String LOGIN_FORM = "login_form";
@@ -34,7 +36,7 @@ public class LoginController {
     @PostMapping("/")
     public String verifyLogin(@RequestParam String email,
                               @RequestParam String password,
-                              Model model,
+                              ModelMap model,
                               Venue venue,
                               RedirectAttributes ra){
 
@@ -58,13 +60,13 @@ public class LoginController {
 
             log.info("login successful  - action ended ...");
 
-            System.out.println(venue);
-            ra.addFlashAttribute("venue", venue);
+            model.put("venue", venue);
+
+            //ra.addFlashAttribute("venue", venue);
 
             return REDIRECT_INDEX;
 
         } else if (venue !=null & venue.isAdmin()) {
-
 
             model.addAttribute("venue", new Venue());
 
@@ -78,4 +80,15 @@ public class LoginController {
         return null;
     }
 
+    @GetMapping
+    public String logout(SessionStatus status){
+
+        log.info("logout action started");
+
+        status.setComplete();
+
+        log.info("logout action ended");
+
+        return REDIRECT_INDEX;
+    }
 }

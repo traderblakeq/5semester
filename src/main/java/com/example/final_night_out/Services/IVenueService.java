@@ -25,6 +25,8 @@ public interface IVenueService {
 
     Pictures savePics(String uid, Pictures pictures, MultipartFile imageFile) throws IOException;
 
+    String deletePics(String uid);
+
     List<Pictures> fetchPictures(String uid) throws InterruptedException, ExecutionException;
 
 }
