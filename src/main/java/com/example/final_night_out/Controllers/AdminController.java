@@ -20,8 +20,8 @@ public class AdminController {
     @Autowired
     private IAdminService iAdminService;
 
-    private final String ADMIN = "/admin";
-    private final String REDIRECT_ADMIN = "redirect:/admin";
+    private final String ADMIN = "admin";
+    private final String REDIRECT_ADMIN = "admin";
 
 
     @GetMapping("/admin")

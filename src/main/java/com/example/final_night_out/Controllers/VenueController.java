@@ -34,8 +34,6 @@ public class VenueController {
     {
         log.info("index action called...");
 
-        System.out.println("index Email " + venue.getEmail());
-
         model.addAttribute("venueData", iVenueService.findVenueByUid(venue.getUid()));
 
         model.addAttribute("news", iVenueService.fetchnews());
@@ -47,8 +45,8 @@ public class VenueController {
         return INDEX;
     }
 
-    @GetMapping("/features/{uid}")
-    public String features(@PathVariable("uid") String uid,
+    @GetMapping("/features")
+    public String features(@ModelAttribute("venue") Venue venue,
                            Features features,
                            Model model) throws InterruptedException, ExecutionException {
 
@@ -57,9 +55,9 @@ public class VenueController {
         //initiate Feature Object for update purpose
         model.addAttribute("f", features);
 
-        Features fea = iVenueService.findFeatuesByUid(uid);
+        Features fea = iVenueService.findFeatuesByUid(venue.getEmail());
 
-        System.out.println("controller " + iVenueService.findFeatuesByUid(uid));
+        System.out.println("controller " + iVenueService.findFeatuesByUid(venue.getEmail()));
 
         model.addAttribute("email", fea.getEmail());
         model.addAttribute("agelimit", fea.getAgeLimit());

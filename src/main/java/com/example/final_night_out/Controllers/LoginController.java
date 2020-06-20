@@ -19,8 +19,7 @@ import java.util.concurrent.ExecutionException;
 public class LoginController {
 
     private final String LOGIN_FORM = "login_form";
-    private final String INDEX = "/index";
-    private final String ADMIN = "/admin";
+    private final String ADMIN = "admin";
     private final String REDIRECT_INDEX = "redirect:/index";
     private final String REDIRECT = "redirect:";
 
@@ -44,6 +43,7 @@ public class LoginController {
 
         try {
             venue = loginService.verifyVenue(email, password);
+            
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {
@@ -80,7 +80,7 @@ public class LoginController {
         return null;
     }
 
-    @GetMapping
+    @GetMapping("/logout")
     public String logout(SessionStatus status){
 
         log.info("logout action started");
@@ -89,6 +89,6 @@ public class LoginController {
 
         log.info("logout action ended");
 
-        return REDIRECT_INDEX;
+        return LOGIN_FORM;
     }
 }
