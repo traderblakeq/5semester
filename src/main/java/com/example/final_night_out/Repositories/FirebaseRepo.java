@@ -89,7 +89,7 @@ public class FirebaseRepo implements IFirebase{
     @Override
     public Features saveFeatures(String uid, Features features) {
 
-        System.out.println("saveFeatures " + features);
+        log.info("saveFeatures " + features);
 
         ApiFuture<WriteResult> future = FirestoreClient.getFirestore()
                 .collection("features")

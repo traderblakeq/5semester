@@ -8,7 +8,6 @@ import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -35,9 +34,7 @@ public class VenueController {
         log.info("index action called...");
 
         model.addAttribute("venueData", iVenueService.findVenueByUid(venue.getUid()));
-
         model.addAttribute("news", iVenueService.fetchnews());
-
         model.addAttribute("pics", iVenueService.fetchPictures(venue.getUid()));
 
         log.info("index action ended...");
@@ -48,17 +45,14 @@ public class VenueController {
     @GetMapping("/features")
     public String features(@ModelAttribute("venue") Venue venue,
                            Features features,
-                           Model model) throws InterruptedException, ExecutionException {
-
+                           Model model) throws InterruptedException, ExecutionException
+    {
         log.info("features action called...");
-
-        //initiate Feature Object for update purpose
-        model.addAttribute("f", features);
 
         Features fea = iVenueService.findFeatuesByUid(venue.getEmail());
 
-        System.out.println("controller " + iVenueService.findFeatuesByUid(venue.getEmail()));
-
+        //initiate Feature Object for update purpose
+        model.addAttribute("fea", fea);
         model.addAttribute("email", fea.getEmail());
         model.addAttribute("agelimit", fea.getAgeLimit());
         model.addAttribute("lgtb", fea.isLGTB());
@@ -79,10 +73,12 @@ public class VenueController {
     }
 
     @PostMapping("/featuresPost")
-    public String featuresPost(@ModelAttribute Features features)throws InterruptedException, ExecutionException{
+    public String featuresPost(@ModelAttribute Features features,
+                               @ModelAttribute("venue") Venue venue)throws InterruptedException, ExecutionException{
 
         log.info("featuresPost action called...");
 
+        features.setEmail(venue.getEmail());
         iVenueService.updateFeatures(features);
 
         log.info("featuresPost action ended...");
@@ -111,7 +107,6 @@ public class VenueController {
         log.info("editopeninghoursSubmit action called...");
 
         iVenueService.updateOpeningHours(venue);
-
         ra.addFlashAttribute("venue", venue);
 
         log.info("editopeninghoursSubmit action ended...");
@@ -143,7 +138,13 @@ public class VenueController {
 
         log.info("deletepic action started");
 
-        iVenueService.deletePics(venue.getUid());
+        try{
+
+            iVenueService.deletePics(venue.getUid());
+
+        }catch (Exception e){
+            log.info(String.valueOf(e));
+        }
 
         log.info("delete pics action ended");
 

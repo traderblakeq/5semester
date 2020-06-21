@@ -49,10 +49,9 @@ public class Features {
     @NestedConfigurationProperty
     private DressCode dressCode = new DressCode();
 
-
     @Data
     @NoArgsConstructor
-    public static class Type{
+    static class Type{
 
         private boolean bar;
         private boolean nightClub;
@@ -62,7 +61,7 @@ public class Features {
 
     @Data
     @NoArgsConstructor
-    public static class TypeOfVenue{
+    static class TypeOfVenue{
 
         private boolean cocktail;
         private boolean sports;
@@ -77,7 +76,7 @@ public class Features {
 
     @Data
     @NoArgsConstructor
-    public static class Activities{
+    static class Activities{
 
         private boolean turnaments;
         private boolean dices;
@@ -99,7 +98,7 @@ public class Features {
 
     @Data
     @NoArgsConstructor
-    public static class Smoking{
+    static class Smoking{
 
         private boolean allowedIndoor;
         private boolean areIndoor;
@@ -109,7 +108,7 @@ public class Features {
 
     @Data
     @NoArgsConstructor
-    public static class FacilityType{
+    static class FacilityType{
 
         private boolean danceFloor;
         private boolean vipArea;
@@ -124,7 +123,7 @@ public class Features {
 
     @Data
     @NoArgsConstructor
-    public static class SoundStyle{
+    static class SoundStyle{
 
         private boolean live;
         private boolean dj;
@@ -134,7 +133,7 @@ public class Features {
 
     @Data
     @NoArgsConstructor
-    public static class MusicStyle{
+    static class MusicStyle{
 
         private boolean blues;
         private boolean jazz;
@@ -156,7 +155,7 @@ public class Features {
 
     @Data
     @NoArgsConstructor
-    public static class Beverage{
+    static class Beverage{
 
         private boolean beer;
         private boolean specialBeer;
@@ -171,7 +170,7 @@ public class Features {
 
     @Data
     @NoArgsConstructor
-    public static class FoodOptions{
+    static class FoodOptions{
 
         private boolean snacks;
         private boolean fastfood;
@@ -180,7 +179,7 @@ public class Features {
 
     @Data
     @NoArgsConstructor
-    public static class DressCode{
+    static class DressCode{
 
         private boolean casual;
         private boolean fashionable;

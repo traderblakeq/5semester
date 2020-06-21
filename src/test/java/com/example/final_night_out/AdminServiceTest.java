@@ -27,12 +27,12 @@ import static org.mockito.Mockito.when;
 @SpringBootTest
 public class AdminServiceTest {
 
-    @Mock
-    private IFirebase firebase;
-
     @Autowired
     @InjectMocks
     private AdminService adminService;
+
+    @Mock
+    private IFirebase firebase;
 
     @Autowired
     public PasswordEncoder passwordEncoder;
@@ -64,9 +64,10 @@ public class AdminServiceTest {
         //When
         Venue returnedVenue = adminService.initialCreationVenue(venue);
 
+        //Hash password on test obj
         venue.setPassword(passwordEncoder.encode(venue.getPassword()));
 
-        //Then
+        //Then assert that password has been hashed on both obj's
         assertEquals(venue, returnedVenue);
     }
 
